@@ -1,32 +1,39 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+  <v-app>
+    <div>
+    <Navbar :logo="logo_src" :alt="app_name"/>
+    <v-fade-transition mode="out-in" appear>
+    <router-view />
+    </v-fade-transition>
+    <Footer />
   </div>
+  </v-app>
 </template>
 
+<script>
+  export default {
+    name: 'App',
+    components: {
+      Navbar: () => import("@/components/Navbar.vue"),
+      Footer: () => import("@/components/Footer.vue"),
+    },
+    data(){
+      return{
+        logo_src: "/img/logo.png",
+        app_name: "logo"
+      }
+    }
+  };
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+@import url('https://fonts.cdnfonts.com/css/gotham');
 
-nav {
-  padding: 30px;
-}
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Gotham', sans-serif;
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
 }
 </style>
